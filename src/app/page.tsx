@@ -50,7 +50,7 @@ export default function Home() {
     //     </p>
     //   </section>
     // </main>
-    <div className="w-svw h-[3328px] relative bg-neutral-950 overflow-hidden">
+    <div className="w-[100%] relative bg-neutral-950 overflow-hidden">
       <Hero />
       <Projects />
       <BlogSection />
