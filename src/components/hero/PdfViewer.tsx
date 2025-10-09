@@ -1,5 +1,5 @@
 // components/PdfViewer.tsx
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 
 // Define the component props
 interface PdfViewerProps {

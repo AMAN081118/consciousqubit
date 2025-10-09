@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabaseServer";
 import { ratelimit } from "@/lib/rateLimiter";
 import DOMPurify from "isomorphic-dompurify";
-import nodemailer from "nodemailer";
+// import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {

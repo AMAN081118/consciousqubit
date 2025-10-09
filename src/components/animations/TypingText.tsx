@@ -25,7 +25,7 @@ export default function TypingText({
     const startTimeout = setTimeout(() => {
       let i = 0;
       intervalId = setInterval(() => {
-        setDisplayedText((_) => text.slice(0, i + 1));
+        setDisplayedText(() => text.slice(0, i + 1));
         i++;
         if (i >= text.length && intervalId) {
           clearInterval(intervalId);

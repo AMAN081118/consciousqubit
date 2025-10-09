@@ -32,7 +32,8 @@ export default function BlogEditor() {
     if (error) {
       alert("Error: " + error.message);
     } else {
-      alert("Blog saved ✅");
+      alert("Blog saved ");
+      console.log(data);
       setTitle("");
       setSlug("");
       setExcerpt("");

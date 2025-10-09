@@ -1,3 +1,4 @@
+// ./src/app/admin/blog/edit/[slug]/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -5,13 +6,20 @@ import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import TiptapEditor from "@/components/TipTapEditor";
 
+// Define a type for your blog post object for type safety.
+interface Blog {
+  title: string;
+  excerpt: string | null;
+  tags: string[] | null;
+  content: string;
+}
+
 export default function EditBlogPage() {
   const params = useParams();
   const router = useRouter();
   const slug = params?.slug as string;
 
   const [loading, setLoading] = useState(true);
-  const [blog, setBlog] = useState<any>(null);
   const [title, setTitle] = useState("");
   const [excerpt, setExcerpt] = useState("");
   const [tags, setTags] = useState("");
@@ -23,16 +31,15 @@ export default function EditBlogPage() {
       if (!slug) return;
       const { data, error } = await supabase
         .from("blogs")
-        .select("*")
+        .select("title, excerpt, tags, content")
         .eq("slug", slug)
-        .single();
+        .single<Blog>();
 
       if (error) {
-        console.error(error);
-      } else {
-        setBlog(data);
+        console.error("Failed to fetch blog:", error);
+      } else if (data) {
         setTitle(data.title);
-        setExcerpt(data.excerpt);
+        setExcerpt(data.excerpt || "");
         setTags(data.tags?.join(", ") || "");
         setContent(data.content);
       }

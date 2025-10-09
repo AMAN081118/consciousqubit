@@ -1,19 +1,29 @@
+// ./src/app/blogs/[slug]/page.tsx
 import { supabase } from "@/lib/supabaseClient";
+import Image from "next/image";
 import { notFound } from "next/navigation";
+
+interface Blog {
+  id: number;
+  created_at: string;
+  title: string;
+  content: string;
+  slug: string;
+  cover_image?: string;
+}
 
 export default async function BlogDetail({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  // ✅ Await params
   const { slug } = await params;
 
   const { data: blog, error } = await supabase
     .from("blogs")
     .select("*")
     .eq("slug", slug)
-    .single();
+    .single<Blog>();
 
   if (!blog || error) return notFound();
 
@@ -25,14 +35,16 @@ export default async function BlogDetail({
       </p>
 
       {blog.cover_image && (
-        <img
-          src={blog.cover_image}
+        <Image
+          src={blog.cover_image} // e.g., https://your-supabase-bucket-url/...
           alt={blog.title}
+          width={800}
+          height={400}
           className="my-6 rounded-lg border border-gray-700"
+          priority
         />
       )}
 
-      {/* Render stored HTML */}
       <div
         className="prose prose-invert max-w-none"
         dangerouslySetInnerHTML={{ __html: blog.content }}
