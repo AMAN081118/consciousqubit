@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: consciousqubit
+    env: docker
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: NODE_ENV
+        value: production
