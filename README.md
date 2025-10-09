@@ -36,7 +36,7 @@ I’m a B.Tech student at **IIITDM Jabalpur** (Smart Manufacturing, 2023–2027)
 ## Achievements & Leadership
 - **Web Dev Mentor**, Programming Club IIITDMJ — Trained 20+ students to build deployable web apps.  
 - **Event Coordinator**, CosmicQuest Abhikalpan’25 — Organized national competition with 140+ teams.  
-- Solved **700+ DSA problems** (LeetCode 1778+, CodeChef 3★ 1640+, Codeforces Pupil 1200+).
+- Solved **500+ DSA problems** (LeetCode 1778+, CodeChef 3★ 1640+, Codeforces Pupil 1200+).
 
 ---
 
