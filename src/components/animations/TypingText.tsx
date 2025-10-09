@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 interface TypingTextProps {
   text: string;
   className?: string;
-  speed?: number; // typing speed (ms per char)
-  startDelay?: number; // delay before typing starts (ms)
+  speed?: number; // ms per char
+  startDelay?: number; // ms before typing starts
 }
 
 export default function TypingText({
@@ -18,28 +18,43 @@ export default function TypingText({
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
+    // reset visible text whenever `text` changes
+    setDisplayedText("");
+
+    let intervalId: ReturnType<typeof setInterval> | null = null;
     const startTimeout = setTimeout(() => {
       let i = 0;
-      const interval = setInterval(() => {
-        setDisplayedText(text.slice(0, i + 1));
+      intervalId = setInterval(() => {
+        setDisplayedText((_) => text.slice(0, i + 1));
         i++;
-        if (i === text.length) clearInterval(interval);
+        if (i >= text.length && intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
       }, speed);
     }, startDelay);
 
-    return () => clearTimeout(startTimeout);
+    return () => {
+      clearTimeout(startTimeout);
+      if (intervalId) clearInterval(intervalId);
+    };
   }, [text, speed, startDelay]);
 
   return (
     <motion.p
-      className={`font-mono whitespace-pre-wrap ${className}`}
+      // role/aria-live helps screen readers notice updates
+      role="status"
+      aria-live="polite"
+      className={`whitespace-pre-wrap break-words ${className}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.28 }}
     >
       {displayedText}
       <motion.span
-        className="inline-block w-1 bg-gray-400 ml-1"
+        aria-hidden="true"
+        className="inline-block ml-2 align-middle"
+        style={{ width: 6, height: 18, borderRadius: 2 }}
         animate={{ opacity: [1, 0, 1] }}
         transition={{ repeat: Infinity, duration: 0.8 }}
       />
