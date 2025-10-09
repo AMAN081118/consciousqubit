@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aman Kumar
 
-## Getting Started
+### Software Developer - Full-Stack
+ Jabalpur, India |  [aman081118@gmail.com](mailto:aman081118@gmail.com) |  [LinkedIn](https://www.linkedin.com/in/aman081118/) |  [GitHub](https://github.com/AMAN081118)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About Me
+I’m a B.Tech student at **IIITDM Jabalpur** (Smart Manufacturing, 2023–2027) passionate about building **high-performance web apps**, **AI-driven systems**, and **Industry 4.0 solutions**. I focus on scalable architectures, clean UI, and efficient backend design.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Experience
+**Software Development Intern — Rakumura IT Solutions**  
+*Chennai, India | July 2025 – Present*  
+- Revamped a **Next.js + Supabase** admin dashboard, improving data fetch latency by **60–80%**.  
+- Developed **SupaCMS**, a custom CMS replacing third-party dependencies and reducing costs.  
+- Boosted page responsiveness by migrating business logic to backend APIs.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Projects
+**[APS IIITDMJ](https://aps-iiitdmj.vercel.app/)** — Team project with **Next.js** and **Supabase**, Dockerized for AWS Lambda deployment.  
+**[Nike-Inspired E-commerce Page](https://github.com/AMAN081118/nike)** — Responsive React + Tailwind + Shadcn UI front-end with optimized performance.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Skills
+**Languages:** C++, Python, JavaScript, TypeScript, Go, Java, SQL  
+**Frameworks:** React, Next.js, Node.js, Express, Redux Toolkit  
+**Databases & Cloud:** PostgreSQL, MongoDB, Supabase, AWS, DigitalOcean, Docker  
+**Tools:** Git, VS Code, Cursor IDE, Google Gemini API SDK  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Achievements & Leadership
+- **Web Dev Mentor**, Programming Club IIITDMJ — Trained 20+ students to build deployable web apps.  
+- **Event Coordinator**, CosmicQuest Abhikalpan’25 — Organized national competition with 140+ teams.  
+- Solved **700+ DSA problems** (LeetCode 1778+, CodeChef 3★ 1640+, Codeforces Pupil 1200+).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Current Focus
+- Advanced **Next.js App Router** & **Supabase Edge Functions**.  
+- Exploring **AI and Digital Twin systems** for smart manufacturing.
