@@ -59,3 +59,26 @@ body {
     transform: scale(1.05);
   }
 }
+
+@layer utilities {
+  .bg-grid-pattern-pure {
+    /* --- Customize Your Grid Here --- */
+    --grid-size: 2.5rem; /* 40px */
+    --line-thickness: 0.125rem; /* 1px */
+    --grid-color: rgba(255, 255, 255, 0.07);
+    /* ---------------------------------- */
+
+    background-image: linear-gradient(
+        to right,
+        var(--grid-color) var(--line-thickness),
+        transparent var(--line-thickness)
+      ),
+      linear-gradient(
+        to bottom,
+        var(--grid-color) var(--line-thickness),
+        transparent var(--line-thickness)
+      );
+
+    background-size: var(--grid-size) var(--grid-size);
+  }
+}

@@ -7,7 +7,7 @@ import TypingText from "@/components/animations/TypingText";
 
 const Hero = () => {
   return (
-    <section className="container mx-auto px-4 py-12">
+    <section className="container mx-auto px-4 py-12 ">
       <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
         {/* Left: Neural network (stays on top on mobile) */}
         <div className="flex-1 hidden md:flex items-center justify-center w-full md:w-1/2  md:visible">

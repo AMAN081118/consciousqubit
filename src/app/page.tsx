@@ -1,3 +1,4 @@
+import ContributionsDisplay from "@/components/contributions/ContributionsDisplay";
 import BlogSection from "@/pages/BlogSection";
 import ContactSection from "@/pages/ContactSection";
 import Hero from "@/pages/Hero";
@@ -50,10 +51,13 @@ export default function Home() {
     //     </p>
     //   </section>
     // </main>
-    <div className="w-[100%] relative bg-neutral-950 overflow-hidden">
-      <Hero />
+    <div className="w-[100%] relative bg-neutral-950 overflow-hidden ">
+      <div className="bg-grid-pattern-pure">
+        <Hero />
+      </div>
       <Projects />
       <BlogSection />
+      <ContributionsDisplay />
       <ContactSection />
     </div>
   );
