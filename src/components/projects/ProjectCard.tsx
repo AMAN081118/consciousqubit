@@ -27,7 +27,7 @@ const ProjectCard: React.FC<Props> = ({ project }) => {
             alt={project.title}
             width={800}
             height={1200}
-            className="object-top object-contain w-full h-auto p-2 rounded-xl"
+            className="object-center object-contain w-full h-auto p-2 rounded-xl"
             priority
           />
         </div>

@@ -43,9 +43,6 @@ export const useProjects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       setLoading(true);
-
-      // Tell Supabase what to expect.
-      // We are querying the 'projects' table and expecting an array of 'RawProject'
       const { data, error } = await supabase
         .from("projects")
         .select(
@@ -58,7 +55,7 @@ export const useProjects = () => {
           )
         `,
         )
-        .order("created_at", { ascending: false })
+        .order("created_at", { ascending: true })
         .returns<RawProject[]>(); // <-- Type assertion for the returned data
 
       if (error) {

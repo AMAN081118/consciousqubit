@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       {/* Apply both font variables to the body */}
       <body className={`${poppins.variable} ${orbitron.variable} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="Light" enableSystem>
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />

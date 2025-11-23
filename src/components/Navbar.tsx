@@ -5,11 +5,6 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
-// --- SVG Icon Components ---
-
-/**
- * Renders a hamburger menu icon.
- */
 const MenuIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +71,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4 md:gap-8">
           {/* Desktop Links (Hidden on mobile) */}
           <div className="md:flex hidden justify-start items-center gap-10 text-white text-lg font-normal font-['Poppins']">
-            <Link href="/about">About</Link>
+            {/* <Link href="/about">About</Link> */}
             <Link href="/blogs">Blogs</Link>
             <Link href="/projects">Projects</Link>
             <Link href="/contact">Contact</Link>
