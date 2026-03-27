@@ -1,76 +1,68 @@
 import { supabase } from "@/lib/supabaseClient";
 import Link from "next/link";
-import Image from "next/image";
-
-// Clean fallback image for blogs without a cover image
-const FALLBACK_IMAGE =
-  "https://placehold.co/600x400/262626/FFFFFF?text=No+Image";
 
 export default async function BlogSection() {
+  // We only need the title, slug, and date for this minimal layout
   const { data: blogs, error } = await supabase
     .from("blogs")
-    .select("id, slug, title, excerpt, cover_image, created_at")
+    .select("id, slug, title, created_at")
     .order("created_at", { ascending: false });
 
   if (error) {
     console.error(error);
-    return <div className="p-10 text-red-500">Error loading blogs</div>;
+    return (
+      <div className="py-10 text-red-500 font-['Poppins']">
+        Error loading blogs
+      </div>
+    );
   }
 
-  const MAX_EXCERPT_LINES = 3;
+  // Helper function to format the date exactly like the image: DD.MM.YYYY
+  const formatDate = (dateString: string) => {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  };
 
   return (
-    <div className="flex flex-col gap-8 justify-center items-center py-10">
-      <div className="text-white text-center">
-        <h2 className="text-5xl font-normal font-['Orbitron'] leading-loose">
-          Blogs
+    <section id="blogs" className="w-full pt-10 scroll-mt-24">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold font-['Orbitron'] text-gray-900 dark:text-white">
+          Blog
         </h2>
       </div>
 
-      {/* Blog Card Container */}
-      <div className="flex justify-center gap-6 flex-wrap">
-        {blogs?.map((blog) => (
+      {/* Grid Container with Top Border */}
+      <div className="grid grid-cols-1 md:grid-cols-2 border-t border-gray-200 dark:border-gray-800">
+        {blogs?.map((blog, index) => (
           <Link
             key={blog.id}
             href={`/blogs/${blog.slug}`}
-            className="group block w-80 shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-3xl overflow-hidden"
+            className={`group flex flex-col justify-start py-6 px-2 sm:px-6 border-b border-gray-200 dark:border-gray-800 transition-colors hover:bg-gray-50 dark:hover:bg-neutral-900/50 ${
+              index % 2 !== 0 ? "md:border-l" : "" // Adds the vertical divider line to the right column on desktop
+            }`}
           >
-            {/* Render actual cover image */}
-            <div className="w-80 h-60 relative">
-              <Image
-                src={blog.cover_image || FALLBACK_IMAGE}
-                alt={blog.title}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-                sizes="320px"
-                priority={false}
-              />
-            </div>
+            {/* Title - Includes the hover underline effect from your reference */}
+            <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 font-['Poppins'] group-hover:underline decoration-blue-500 underline-offset-4 mb-2 leading-snug">
+              {blog.title}
+            </h3>
 
-            {/* Content Section */}
-            <div className="w-80 h-40 px-4 py-3 bg-gray-100 group-hover:bg-gray-200 transition-colors duration-300 rounded-b-3xl flex flex-col gap-2">
-              <h3 className="text-xl font-bold text-gray-800 whitespace-nowrap overflow-hidden text-ellipsis">
-                {blog.title}
-              </h3>
-
-              <p
-                className="text-gray-500 text-sm overflow-hidden"
-                style={{
-                  display: "-webkit-box",
-                  WebkitLineClamp: MAX_EXCERPT_LINES,
-                  WebkitBoxOrient: "vertical",
-                }}
-              >
-                {blog.excerpt}
-              </p>
-
-              <div className="mt-auto flex justify-end text-sm font-semibold font-['Poppins'] text-purple-600 group-hover:text-red-700 transition">
-                Read Post →
-              </div>
-            </div>
+            {/* Date */}
+            <span className="text-sm text-gray-500 dark:text-gray-400 font-['Poppins'] mt-auto">
+              {formatDate(blog.created_at)}
+            </span>
           </Link>
         ))}
+
+        {(!blogs || blogs.length === 0) && (
+          <div className="py-6 px-2 text-gray-500 font-['Poppins']">
+            No posts found.
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 }

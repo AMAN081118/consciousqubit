@@ -1,43 +1,33 @@
-"use client"; // This must be a client component to use hooks
+"use client";
 
 import React, { useMemo } from "react";
 import useSWR from "swr";
 import ContributionGrid from "./ContributionGrid";
 import { normalizeGitHubContributions } from "@/lib/contribution-utils";
 
-// SWR fetcher function
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface ContributionCardProps {
   username: string;
   year: string | number;
-  icon: React.ReactNode;
 }
 
 const ContributionCard: React.FC<ContributionCardProps> = ({
   username,
   year,
-  icon,
 }) => {
-  // API URL is now hardcoded for GitHub
   const apiUrl = `/api/github-contributions?username=${username}&year=${year}`;
-
-  // Fetch data with SWR
   const { data: rawData, error, isLoading } = useSWR(apiUrl, fetcher);
 
-  // Normalize the data using our simplified GitHub-specific function
   const { weeks, totalContributions } = useMemo(() => {
-    if (!rawData) return { weeks: [], totalContributions: 0 };
-    if (rawData.error) return { weeks: [], totalContributions: 0 };
-
+    if (!rawData || rawData.error) return { weeks: [], totalContributions: 0 };
     return normalizeGitHubContributions(rawData);
   }, [rawData]);
 
-  // This function renders the correct state (loading, error, or data)
   const renderGrid = () => {
     if (isLoading) {
       return (
-        <div className="flex h-32 w-full items-center justify-center text-zinc-400">
+        <div className="flex h-32 w-full items-center justify-center text-gray-400 font-['Poppins'] text-sm">
           Loading contributions...
         </div>
       );
@@ -45,69 +35,56 @@ const ContributionCard: React.FC<ContributionCardProps> = ({
 
     if (error || rawData?.error) {
       return (
-        <div className="flex h-32 w-full items-center justify-center rounded-md bg-red-950 text-red-300">
-          Error loading data: {rawData?.error || "Failed to fetch"}
+        <div className="flex h-32 w-full items-center justify-center text-red-500 font-['Poppins'] text-sm">
+          Failed to load data. Ensure /api/github-contributions is running.
         </div>
       );
     }
 
     if (weeks.length === 0) {
       return (
-        <div className="flex h-32 w-full items-center justify-center text-zinc-500">
+        <div className="flex h-32 w-full items-center justify-center text-gray-400 font-['Poppins'] text-sm">
           No contribution data found for {year}.
         </div>
       );
     }
 
-    // On success, render the grid with clean data
     return <ContributionGrid weeks={weeks} />;
   };
 
   return (
-    <div
-      className="
-      w-full max-w-4xl rounded-xl border border-zinc-800 
-      bg-zinc-900/50 p-4 shadow-lg backdrop-blur-sm sm:p-6
-    "
-    >
-      {/* Card Header */}
-      <div className="flex items-center gap-2">
-        <div className="h-[1.125rem] w-[1.125rem] text-zinc-400">{icon}</div>
-        <a
-          href={`https://github.com/${username}`} // Link is now specific
-          className="text-sm font-medium text-zinc-300 hover:text-white"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          @{username}
-        </a>
+    <div className="w-full flex flex-col font-['Poppins']">
+      {/* Grid Content */}
+      <div className="w-full overflow-x-auto pb-4 custom-scrollbar">
+        <div className="min-w-[750px]">{renderGrid()}</div>
       </div>
 
-      {/* Grid Content - now with loading/error states */}
-      {/* This is the key fix: "overflow-x-auto" creates the 
-        horizontal scrolling window for small screens.
-      */}
-      <div className="mt-4 overflow-x-auto pb-2">{renderGrid()}</div>
-
-      {/* Card Footer - now with dynamic count */}
-      <div
-        className="mt-4 flex flex-col items-center justify-between 
-        gap-2 text-xs text-zinc-400 sm:flex-row sm:text-sm"
-      >
+      {/* Footer / Legend */}
+      <div className="mt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
         <p>
-          <span className="font-medium text-white">
-            {isLoading ? "..." : totalContributions}
+          <span className="font-semibold text-gray-900 dark:text-white">
+            {isLoading ? "..." : totalContributions.toLocaleString()}
           </span>
-          {` GitHub contributions in ${year}`}
+          {` contributions in ${year} on `}
+          <a
+            href={`https://github.com/${username}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-900 dark:text-white hover:underline decoration-gray-400 underline-offset-4 transition-all"
+          >
+            GitHub
+          </a>
+          .
         </p>
 
-        {/* Legend */}
-        <div className="flex items-center gap-1">
+        {/* Grayscale Legend */}
+        <div className="flex items-center gap-1.5 text-xs">
           <span>Less</span>
-          <div className="h-3 w-3 rounded-sm bg-zinc-800"></div>
-          <div className="h-3 w-3 rounded-sm bg-green-800"></div>
-          <div className="h-3 w-3 rounded-sm bg-green-600"></div>
-          <div className="h-3 w-3 rounded-sm bg-green-400"></div>
+          <div className="h-3 w-3 rounded-sm bg-gray-100 dark:bg-neutral-900"></div>
+          <div className="h-3 w-3 rounded-sm bg-gray-300 dark:bg-neutral-700"></div>
+          <div className="h-3 w-3 rounded-sm bg-gray-400 dark:bg-neutral-600"></div>
+          <div className="h-3 w-3 rounded-sm bg-gray-500 dark:bg-neutral-500"></div>
+          <div className="h-3 w-3 rounded-sm bg-gray-700 dark:bg-neutral-400"></div>
           <span>More</span>
         </div>
       </div>

@@ -164,7 +164,7 @@ const NeuralNetwork = () => {
               y1={startY}
               x2={endX}
               y2={endY}
-              stroke={isActive ? "url(#pulse-gradient)" : "#fff"}
+              stroke={isActive ? "url(#pulse-gradient)" : "#000"}
               strokeWidth={isActive ? 1.5 : 0.5}
               className={isActive ? "" : "edge-path"}
               strokeOpacity={isActive ? 1 : 0.3}

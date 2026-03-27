@@ -13,9 +13,6 @@ export interface Project {
   tech_stack: string[]; // This will be an array of strings (names or URLs)
 }
 
-// --- NEW TYPES ---
-// We create types that match the RAW data from the Supabase query
-
 // This type matches: project_techstack ( techstack ( name, img_url ) )
 interface RawTechStackEntry {
   techstack: {
@@ -24,7 +21,6 @@ interface RawTechStackEntry {
   } | null; // techstack itself could be null if the join fails
 }
 
-// This type matches the top-level project from your select query
 interface RawProject {
   id: string;
   title: string;

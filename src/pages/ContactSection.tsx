@@ -38,94 +38,98 @@ export default function ContactSection() {
   }
 
   return (
-    <div className="min-h-screen w-full bg-[radial-gradient(circle_at_top,_#101010,_#050505)] flex flex-col items-center justify-center px-4">
+    <section id="contact" className="w-full pt-10 pb-24 scroll-mt-24">
       {/* Section Header */}
-      <motion.h1
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-4xl md:text-5xl font-semibold text-white mb-10 tracking-tight"
-      >
-        Contact Me
-      </motion.h1>
-
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
+      <motion.h2
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="backdrop-blur-xl bg-white/[0.04] border border-white/[0.08] shadow-[0_0_40px_rgba(0,0,0,0.4)] rounded-2xl p-8 w-full max-w-lg"
+        className="text-2xl font-bold font-['Orbitron'] text-gray-900 dark:text-white mb-4"
       >
-        <form onSubmit={handleSubmit} className="space-y-6">
+        Contact
+      </motion.h2>
+
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="text-base text-gray-700 dark:text-gray-300 font-['IBM_Plex_Mono'] mb-8"
+      >
+        Feel free to reach out for collaborations, opportunities, or just to say
+        hello.
+      </motion.p>
+
+      {/* Contact Form */}
+      <motion.form
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 w-full max-w-lg font-['Poppins']"
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Name */}
-          <div className="relative">
-            <input
-              type="text"
-              name="name"
-              required
-              className="peer w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-transparent focus:border-purple-500 focus:ring-purple-500 focus:outline-none transition"
-              placeholder="Your name"
-            />
-            <label className="absolute left-4 top-3 text-gray-400 text-sm pointer-events-none transition-all peer-focus:top-0 peer-focus:text-xs peer-focus:text-purple-400 peer-valid:top-0 peer-valid:text-xs peer-valid:text-purple-300">
-              Your name
-            </label>
-          </div>
+          <input
+            type="text"
+            name="name"
+            required
+            placeholder="Name"
+            className="w-full px-4 py-3 bg-transparent border border-gray-200 dark:border-gray-800 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:border-gray-400 dark:focus:border-gray-500 focus:outline-none transition-colors"
+          />
 
           {/* Email */}
-          <div className="relative">
-            <input
-              type="email"
-              name="email"
-              required
-              className="peer w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-transparent focus:border-purple-500 focus:ring-purple-500 focus:outline-none transition"
-              placeholder="Your email"
-            />
-            <label className="absolute left-4 top-3 text-gray-400 text-sm pointer-events-none transition-all peer-focus:top-0 peer-focus:text-xs peer-focus:text-purple-400 peer-valid:top-0 peer-valid:text-xs peer-valid:text-purple-300">
-              Your email
-            </label>
-          </div>
+          <input
+            type="email"
+            name="email"
+            required
+            placeholder="Email"
+            className="w-full px-4 py-3 bg-transparent border border-gray-200 dark:border-gray-800 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:border-gray-400 dark:focus:border-gray-500 focus:outline-none transition-colors"
+          />
+        </div>
 
-          {/* Message */}
-          <div className="relative">
-            <textarea
-              name="message"
-              required
-              rows={4}
-              className="peer w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-transparent focus:border-purple-500 focus:ring-purple-500 focus:outline-none transition"
-              placeholder="Your message"
-            />
-            <label className="absolute left-4 top-3 text-gray-400 text-sm pointer-events-none transition-all peer-focus:top-0 peer-focus:text-xs peer-focus:text-purple-400 peer-valid:top-0 peer-valid:text-xs peer-valid:text-purple-300">
-              Your message
-            </label>
-          </div>
+        {/* Message */}
+        <textarea
+          name="message"
+          required
+          rows={5}
+          placeholder="Message"
+          className="w-full px-4 py-3 bg-transparent border border-gray-200 dark:border-gray-800 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:border-gray-400 dark:focus:border-gray-500 focus:outline-none transition-colors resize-y"
+        />
 
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className={`w-full py-3 rounded-xl font-medium text-white text-lg transition-all
-              bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500
-              shadow-[0_0_15px_rgba(200,0,255,0.4)]
-              ${
-                status === "loading"
-                  ? "opacity-60 cursor-not-allowed"
-                  : "hover:scale-[1.02] active:scale-[0.98]"
-              }
-            `}
-          >
-            {status === "loading" ? "Sending..." : "Send Message"}
-          </button>
-        </form>
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          className={`w-max px-6 py-2.5 mt-2 rounded-lg font-medium text-sm transition-all
+            bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900
+            ${
+              status === "loading"
+                ? "opacity-60 cursor-not-allowed"
+                : "hover:bg-gray-800 dark:hover:bg-white active:scale-95"
+            }
+          `}
+        >
+          {status === "loading" ? "Sending..." : "Send Message"}
+        </button>
+      </motion.form>
 
-        {/* Status Message */}
-        {message && (
-          <p
-            className={`text-center mt-5 ${
-              status === "success" ? "text-green-400" : "text-red-400"
-            }`}
-          >
-            {message}
-          </p>
-        )}
-      </motion.div>
-    </div>
+      {/* Status Message */}
+      {message && (
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className={`mt-4 text-sm font-['IBM_Plex_Mono'] ${
+            status === "success"
+              ? "text-green-600 dark:text-green-400"
+              : "text-red-600 dark:text-red-400"
+          }`}
+        >
+          {message}
+        </motion.p>
+      )}
+    </section>
   );
 }
