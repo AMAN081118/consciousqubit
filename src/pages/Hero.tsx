@@ -17,7 +17,7 @@ import {
 
 const Hero = () => {
   const PROFILE_PHOTO_URL =
-    "https://kduuxbyobjephuqskgxc.supabase.co/storage/v1/object/public/profile/profile.jpg";
+    "https://kduuxbyobjephuqskgxc.supabase.co/storage/v1/object/public/profile/profilev2.jpg";
 
   // --- Dynamic Counters State ---
   const [age, setAge] = useState<string>("...");
