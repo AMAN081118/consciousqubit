@@ -38,13 +38,13 @@ const freelanceData = [
   {
     company: "Deccan AI",
     logo: deccan,
-    isCurrent: true,
+    isCurrent: false,
     roles: [
       {
         id: "deccan-ai-expert",
         title: "AI Expert",
         type: "Freelance",
-        date: "01.2026 - present",
+        date: "01.2026 - 05.2026",
         bullets: [
           "Evaluated and annotated AI model responses for correctness, reasoning quality, and relevance to user queries, identifying factual inaccuracies and logical inconsistencies.",
           "Compared multiple LLM-generated outputs using structured evaluation guidelines, providing detailed feedback to improve response clarity, completeness, and alignment with expected conversational behavior.",

@@ -148,7 +148,7 @@ const Hero = () => {
                 <CodeXml size={16} />
               </div>
               <span className="text-gray-800 dark:text-zinc-200">
-                AI Expert @Deccan AI (Freelance)
+                Ex-SDE intern @Rakumura
               </span>
             </div>
 
@@ -227,7 +227,7 @@ const Hero = () => {
               <span className="text-gray-500 dark:text-zinc-400">
                 Last visitor from{" "}
                 <span className="text-gray-800 dark:text-zinc-200">
-                  Beijing, China
+                  Banglore, India
                 </span>
               </span>
             </div>
